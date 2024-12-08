@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_app": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::userapp.userapp",
+      "inversedBy": "transactions"
+    },
+    "merchant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::merchant.merchant",
+      "inversedBy": "transactions"
+    },
+    "delivery_time": {
+      "type": "time",
+      "required": true,
+      "unique": false
+    },
+    "grand_total": {
+      "type": "integer",
+      "required": true
+    },
+    "delivery_service": {
+      "type": "string",
+      "required": true
+    },
+    "list_item_transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::list-item-transaction.list-item-transaction",
+      "mappedBy": "transaction"
+    }
+  }
+}

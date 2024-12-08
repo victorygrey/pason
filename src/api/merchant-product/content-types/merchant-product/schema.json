@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "merchant_products",
+  "info": {
+    "singularName": "merchant-product",
+    "pluralName": "merchant-products",
+    "displayName": "Merchant Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "merchant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::merchant.merchant",
+      "inversedBy": "merchant_products"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product",
+      "inversedBy": "merchant_product"
+    },
+    "price": {
+      "type": "integer",
+      "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "status_product": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "discount": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}
