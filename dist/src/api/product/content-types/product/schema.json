@@ -1,0 +1,53 @@
+{
+    "kind": "collectionType",
+    "collectionName": "products",
+    "info": {
+        "singularName": "product",
+        "pluralName": "products",
+        "displayName": "Product",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name_product": {
+            "type": "string",
+            "required": true
+        },
+        "vitamin": {
+            "type": "text",
+            "required": true
+        },
+        "benefit": {
+            "type": "blocks",
+            "required": true
+        },
+        "merchant_product": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::merchant-product.merchant-product",
+            "mappedBy": "product"
+        },
+        "picture": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "category": {
+            "type": "enumeration",
+            "enum": [
+                "Buah",
+                "Sayur",
+                "Daging",
+                "Bumbu Dapur",
+                "Sembako"
+            ],
+            "required": true
+        }
+    }
+}

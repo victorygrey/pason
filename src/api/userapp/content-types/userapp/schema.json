@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "userapps",
+  "info": {
+    "singularName": "userapp",
+    "pluralName": "userapps",
+    "displayName": "User app",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "date_birth": {
+      "type": "date",
+      "required": false
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "merchant",
+        "client"
+      ],
+      "required": true
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "user_app"
+    }
+  }
+}

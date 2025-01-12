@@ -1,0 +1,48 @@
+{
+    "kind": "collectionType",
+    "collectionName": "merchants",
+    "info": {
+        "singularName": "merchant",
+        "pluralName": "merchants",
+        "displayName": "Merchant"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user_app": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::userapp.userapp"
+        },
+        "merchant_name": {
+            "type": "string",
+            "required": true
+        },
+        "merchant_description": {
+            "type": "text",
+            "required": false
+        },
+        "merchant_address": {
+            "type": "text",
+            "required": true
+        },
+        "merchant_account_number": {
+            "type": "string",
+            "required": true
+        },
+        "transactions": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::transaction.transaction",
+            "mappedBy": "merchant"
+        },
+        "merchant_products": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::merchant-product.merchant-product",
+            "mappedBy": "merchant"
+        }
+    }
+}
