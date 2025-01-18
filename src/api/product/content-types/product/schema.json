@@ -44,8 +44,11 @@
         "Buah",
         "Sayur",
         "Daging",
+        "Ikan",
         "Bumbu Dapur",
-        "Sembako"
+        "Sembako",
+        "Umbi-umbian",
+        "Hasil olahan"
       ],
       "required": true
     }

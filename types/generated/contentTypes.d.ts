@@ -591,7 +591,16 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   attributes: {
     benefit: Schema.Attribute.Blocks & Schema.Attribute.Required;
     category: Schema.Attribute.Enumeration<
-      ['Buah', 'Sayur', 'Daging', 'Bumbu Dapur', 'Sembako']
+      [
+        'Buah',
+        'Sayur',
+        'Daging',
+        'Ikan',
+        'Bumbu Dapur',
+        'Sembako',
+        'Umbi-umbian',
+        'Hasil olahan',
+      ]
     > &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
