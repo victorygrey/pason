@@ -16,10 +16,6 @@
       "type": "email",
       "required": true
     },
-    "password": {
-      "type": "password",
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true
@@ -56,6 +52,10 @@
       "relation": "oneToMany",
       "target": "api::transaction.transaction",
       "mappedBy": "user_app"
+    },
+    "password": {
+      "type": "string",
+      "required": true
     }
   }
 }
