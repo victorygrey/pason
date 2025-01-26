@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2025 at 02:51 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jan 26, 2025 at 07:20 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1177,7 +1177,9 @@ CREATE TABLE `merchants` (
 
 INSERT INTO `merchants` (`id`, `document_id`, `merchant_name`, `merchant_description`, `merchant_address`, `merchant_account_number`, `created_at`, `updated_at`, `published_at`, `created_by_id`, `updated_by_id`, `locale`) VALUES
 (1, 'syaempsrx3mzfi7ah4qz3e3w', 'Toko Izal', 'Lorem Ipsum', 'Ujung Berung Indah', '0895385759496', '2024-12-08 20:49:56.541000', '2024-12-08 20:55:54.151000', NULL, 1, 1, NULL),
-(3, 'syaempsrx3mzfi7ah4qz3e3w', 'Toko Izal', 'Lorem Ipsum', 'Ujung Berung Indah', '0895385759496', '2024-12-08 20:49:56.541000', '2024-12-08 20:55:54.151000', '2024-12-08 20:55:54.357000', 1, 1, NULL);
+(3, 'syaempsrx3mzfi7ah4qz3e3w', 'Toko Izal', 'Lorem Ipsum', 'Ujung Berung Indah', '0895385759496', '2024-12-08 20:49:56.541000', '2024-12-08 20:55:54.151000', '2024-12-08 20:55:54.357000', 1, 1, NULL),
+(4, 'yiykljjm3xwvz3yyai9v8v32', 'faizal toko', 'toko faizal menjual produk2 segar', 'pasar caringiin', '45i67890-20', '2025-01-25 16:44:15.954000', '2025-01-25 16:44:15.954000', NULL, 1, 1, NULL),
+(5, 'yiykljjm3xwvz3yyai9v8v32', 'faizal toko', 'toko faizal menjual produk2 segar', 'pasar caringiin', '45i67890-20', '2025-01-25 16:44:15.954000', '2025-01-25 16:44:15.954000', '2025-01-25 16:44:16.004000', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1197,7 +1199,9 @@ CREATE TABLE `merchants_user_app_lnk` (
 
 INSERT INTO `merchants_user_app_lnk` (`id`, `merchant_id`, `userapp_id`) VALUES
 (1, 1, 1),
-(4, 3, 7);
+(4, 3, 7),
+(5, 4, 1),
+(6, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -1221,6 +1225,16 @@ CREATE TABLE `merchant_products` (
   `locale` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `merchant_products`
+--
+
+INSERT INTO `merchant_products` (`id`, `document_id`, `price`, `stock`, `description`, `status_product`, `discount`, `created_at`, `updated_at`, `published_at`, `created_by_id`, `updated_by_id`, `locale`) VALUES
+(1, 'dm4gbf846mmfx2c6751p4kx5', 9000, 30, '[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"text\":\"buah segar, baru panen\"}]}]', 1, 2000.00, '2025-01-25 16:46:57.134000', '2025-01-25 16:46:57.134000', NULL, 1, 1, NULL),
+(2, 'dm4gbf846mmfx2c6751p4kx5', 9000, 30, '[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"text\":\"buah segar, baru panen\"}]}]', 1, 2000.00, '2025-01-25 16:46:57.134000', '2025-01-25 16:46:57.134000', '2025-01-25 16:46:57.163000', 1, 1, NULL),
+(3, 'k8e446wygppgxo5c6exz43yq', 15000, 60, '[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"text\":\"Buah alpukat segar baru dipanen dari kebun sendiri\"}]}]', 1, 2.00, '2025-01-25 18:29:49.985000', '2025-01-25 18:29:49.985000', NULL, 1, 1, NULL),
+(4, 'k8e446wygppgxo5c6exz43yq', 15000, 60, '[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"text\":\"Buah alpukat segar baru dipanen dari kebun sendiri\"}]}]', 1, 2.00, '2025-01-25 18:29:49.985000', '2025-01-25 18:29:49.985000', '2025-01-25 18:29:50.017000', 1, 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1234,6 +1248,16 @@ CREATE TABLE `merchant_products_merchant_lnk` (
   `merchant_product_ord` double UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `merchant_products_merchant_lnk`
+--
+
+INSERT INTO `merchant_products_merchant_lnk` (`id`, `merchant_product_id`, `merchant_id`, `merchant_product_ord`) VALUES
+(1, 1, 4, 1),
+(2, 2, 5, 1),
+(3, 3, 4, 2),
+(4, 4, 5, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -1245,6 +1269,16 @@ CREATE TABLE `merchant_products_product_lnk` (
   `merchant_product_id` int(10) UNSIGNED DEFAULT NULL,
   `product_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `merchant_products_product_lnk`
+--
+
+INSERT INTO `merchant_products_product_lnk` (`id`, `merchant_product_id`, `product_id`) VALUES
+(1, 1, 50),
+(2, 2, 247),
+(3, 3, 30),
+(4, 4, 248);
 
 -- --------------------------------------------------------
 
@@ -1665,7 +1699,7 @@ INSERT INTO `strapi_core_store_settings` (`id`, `key`, `value`, `type`, `environ
 (28, 'plugin_content_manager_configuration_content_types::admin::transfer-token-permission', '{\"settings\":{\"bulkable\":true,\"filterable\":true,\"searchable\":true,\"pageSize\":10,\"mainField\":\"action\",\"defaultSortBy\":\"action\",\"defaultSortOrder\":\"ASC\"},\"metadatas\":{\"id\":{\"edit\":{},\"list\":{\"label\":\"id\",\"searchable\":true,\"sortable\":true}},\"action\":{\"edit\":{\"label\":\"action\",\"description\":\"\",\"placeholder\":\"\",\"visible\":true,\"editable\":true},\"list\":{\"label\":\"action\",\"searchable\":true,\"sortable\":true}},\"token\":{\"edit\":{\"label\":\"token\",\"description\":\"\",\"placeholder\":\"\",\"visible\":true,\"editable\":true,\"mainField\":\"name\"},\"list\":{\"label\":\"token\",\"searchable\":true,\"sortable\":true}},\"createdAt\":{\"edit\":{\"label\":\"createdAt\",\"description\":\"\",\"placeholder\":\"\",\"visible\":false,\"editable\":true},\"list\":{\"label\":\"createdAt\",\"searchable\":true,\"sortable\":true}},\"updatedAt\":{\"edit\":{\"label\":\"updatedAt\",\"description\":\"\",\"placeholder\":\"\",\"visible\":false,\"editable\":true},\"list\":{\"label\":\"updatedAt\",\"searchable\":true,\"sortable\":true}},\"createdBy\":{\"edit\":{\"label\":\"createdBy\",\"description\":\"\",\"placeholder\":\"\",\"visible\":false,\"editable\":true,\"mainField\":\"firstname\"},\"list\":{\"label\":\"createdBy\",\"searchable\":true,\"sortable\":true}},\"updatedBy\":{\"edit\":{\"label\":\"updatedBy\",\"description\":\"\",\"placeholder\":\"\",\"visible\":false,\"editable\":true,\"mainField\":\"firstname\"},\"list\":{\"label\":\"updatedBy\",\"searchable\":true,\"sortable\":true}}},\"layouts\":{\"list\":[\"id\",\"action\",\"token\",\"createdAt\"],\"edit\":[[{\"name\":\"action\",\"size\":6},{\"name\":\"token\",\"size\":6}]]},\"uid\":\"admin::transfer-token-permission\"}', 'object', NULL, NULL),
 (29, 'plugin_upload_settings', '{\"sizeOptimization\":true,\"responsiveDimensions\":true,\"autoOrientation\":false}', 'object', NULL, NULL),
 (30, 'plugin_upload_view_configuration', '{\"pageSize\":10,\"sort\":\"createdAt:DESC\"}', 'object', NULL, NULL),
-(31, 'plugin_upload_metrics', '{\"weeklySchedule\":\"9 44 1 * * 2\",\"lastWeeklyUpdate\":1736794714206}', 'object', NULL, NULL),
+(31, 'plugin_upload_metrics', '{\"weeklySchedule\":\"14 27 16 * * 6\",\"lastWeeklyUpdate\":1737797234043}', 'object', NULL, NULL),
 (32, 'plugin_i18n_default_locale', '\"en\"', 'string', NULL, NULL),
 (33, 'plugin_users-permissions_grant', '{\"email\":{\"icon\":\"envelope\",\"enabled\":true},\"discord\":{\"icon\":\"discord\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/discord/callback\",\"scope\":[\"identify\",\"email\"]},\"facebook\":{\"icon\":\"facebook-square\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/facebook/callback\",\"scope\":[\"email\"]},\"google\":{\"icon\":\"google\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/google/callback\",\"scope\":[\"email\"]},\"github\":{\"icon\":\"github\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/github/callback\",\"scope\":[\"user\",\"user:email\"]},\"microsoft\":{\"icon\":\"windows\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/microsoft/callback\",\"scope\":[\"user.read\"]},\"twitter\":{\"icon\":\"twitter\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/twitter/callback\"},\"instagram\":{\"icon\":\"instagram\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/instagram/callback\",\"scope\":[\"user_profile\"]},\"vk\":{\"icon\":\"vk\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/vk/callback\",\"scope\":[\"email\"]},\"twitch\":{\"icon\":\"twitch\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/twitch/callback\",\"scope\":[\"user:read:email\"]},\"linkedin\":{\"icon\":\"linkedin\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callbackUrl\":\"api/auth/linkedin/callback\",\"scope\":[\"r_liteprofile\",\"r_emailaddress\"]},\"cognito\":{\"icon\":\"aws\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"subdomain\":\"my.subdomain.com\",\"callback\":\"api/auth/cognito/callback\",\"scope\":[\"email\",\"openid\",\"profile\"]},\"reddit\":{\"icon\":\"reddit\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callback\":\"api/auth/reddit/callback\",\"scope\":[\"identity\"]},\"auth0\":{\"icon\":\"\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"subdomain\":\"my-tenant.eu\",\"callback\":\"api/auth/auth0/callback\",\"scope\":[\"openid\",\"email\",\"profile\"]},\"cas\":{\"icon\":\"book\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callback\":\"api/auth/cas/callback\",\"scope\":[\"openid email\"],\"subdomain\":\"my.subdomain.com/cas\"},\"patreon\":{\"icon\":\"\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"callback\":\"api/auth/patreon/callback\",\"scope\":[\"identity\",\"identity[email]\"]},\"keycloak\":{\"icon\":\"\",\"enabled\":false,\"key\":\"\",\"secret\":\"\",\"subdomain\":\"myKeycloakProvider.com/realms/myrealm\",\"callback\":\"api/auth/keycloak/callback\",\"scope\":[\"openid\",\"email\",\"profile\"]}}', 'object', NULL, NULL),
 (34, 'plugin_users-permissions_email', '{\"reset_password\":{\"display\":\"Email.template.reset_password\",\"icon\":\"sync\",\"options\":{\"from\":{\"name\":\"Administration Panel\",\"email\":\"no-reply@strapi.io\"},\"response_email\":\"\",\"object\":\"Reset password\",\"message\":\"<p>We heard that you lost your password. Sorry about that!</p>\\n\\n<p>But don’t worry! You can use the following link to reset your password:</p>\\n<p><%= URL %>?code=<%= TOKEN %></p>\\n\\n<p>Thanks.</p>\"}},\"email_confirmation\":{\"display\":\"Email.template.email_confirmation\",\"icon\":\"check-square\",\"options\":{\"from\":{\"name\":\"Administration Panel\",\"email\":\"no-reply@strapi.io\"},\"response_email\":\"\",\"object\":\"Account confirmation\",\"message\":\"<p>Thank you for registering!</p>\\n\\n<p>You have to confirm your email address. Please click on the link below.</p>\\n\\n<p><%= URL %>?confirmation=<%= CODE %></p>\\n\\n<p>Thanks.</p>\"}}}', 'object', NULL, NULL),
@@ -2001,8 +2035,8 @@ CREATE TABLE `transactions_merchant_lnk` (
 --
 
 INSERT INTO `transactions_merchant_lnk` (`id`, `transaction_id`, `merchant_id`, `transaction_ord`) VALUES
-(1, 1, 1, 1),
-(2, 2, 3, 1);
+(3, 1, 4, 0),
+(4, 2, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -2116,7 +2150,12 @@ INSERT INTO `up_permissions` (`id`, `document_id`, `action`, `created_at`, `upda
 (41, 'dvyusho19yz6jr5v7ps4qrd8', 'api::transaction.transaction.findOne', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.861000', NULL, NULL, NULL),
 (42, 'fr336jl6ktbelavut7ekclli', 'api::transaction.transaction.create', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.865000', NULL, NULL, NULL),
 (43, 'iz4xgusu1tm1sa7cvh0u9o9y', 'api::transaction.transaction.update', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.868000', NULL, NULL, NULL),
-(44, 'gpvki6m19ambvw18pyd4epvc', 'api::transaction.transaction.delete', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.922000', NULL, NULL, NULL);
+(44, 'gpvki6m19ambvw18pyd4epvc', 'api::transaction.transaction.delete', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.851000', '2024-12-08 21:11:58.922000', NULL, NULL, NULL),
+(45, 'lr3vmg1axptc3qkhyxy3rrvf', 'api::merchant-product.merchant-product.find', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', NULL, NULL, NULL),
+(46, 'ahjjykpjwusj2z8cgzpkmnre', 'api::merchant-product.merchant-product.create', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', NULL, NULL, NULL),
+(47, 'x8dgasxx8v4qzaznfy9rw06c', 'api::merchant-product.merchant-product.findOne', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', NULL, NULL, NULL),
+(48, 'rds0amda4cw5dpz556l3wup4', 'api::merchant-product.merchant-product.update', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.520000', NULL, NULL, NULL),
+(49, 'p5dndhqulpyuk3o4hyynic5g', 'api::merchant-product.merchant-product.delete', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.519000', '2025-01-25 17:12:32.520000', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2171,7 +2210,12 @@ INSERT INTO `up_permissions_role_lnk` (`id`, `permission_id`, `role_id`, `permis
 (41, 41, 2, 12),
 (42, 42, 2, 12),
 (43, 43, 2, 12),
-(44, 44, 2, 12);
+(44, 44, 2, 12),
+(45, 47, 2, 13),
+(46, 46, 2, 13),
+(47, 45, 2, 13),
+(48, 49, 2, 13),
+(49, 48, 2, 13);
 
 -- --------------------------------------------------------
 
@@ -2199,7 +2243,7 @@ CREATE TABLE `up_roles` (
 
 INSERT INTO `up_roles` (`id`, `document_id`, `name`, `description`, `type`, `created_at`, `updated_at`, `published_at`, `created_by_id`, `updated_by_id`, `locale`) VALUES
 (1, 'pyok7b34iw1lxh800fz4ayjg', 'Authenticated', 'Default role given to authenticated user.', 'authenticated', '2024-12-08 14:47:48.007000', '2024-12-08 14:47:48.007000', '2024-12-08 14:47:48.008000', NULL, NULL, NULL),
-(2, 'gxqoc03mb6livzmirisgmjir', 'Public', 'Default role given to unauthenticated user.', 'public', '2024-12-08 14:47:48.015000', '2024-12-08 21:11:58.767000', '2024-12-08 14:47:48.016000', NULL, NULL, NULL);
+(2, 'gxqoc03mb6livzmirisgmjir', 'Public', 'Default role given to unauthenticated user.', 'public', '2024-12-08 14:47:48.015000', '2025-01-25 17:12:32.508000', '2024-12-08 14:47:48.016000', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2944,31 +2988,31 @@ ALTER TABLE `list_item_transactions_transaction_lnk`
 -- AUTO_INCREMENT for table `merchants`
 --
 ALTER TABLE `merchants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `merchants_user_app_lnk`
 --
 ALTER TABLE `merchants_user_app_lnk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `merchant_products`
 --
 ALTER TABLE `merchant_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `merchant_products_merchant_lnk`
 --
 ALTER TABLE `merchant_products_merchant_lnk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `merchant_products_product_lnk`
 --
 ALTER TABLE `merchant_products_product_lnk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -3118,7 +3162,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `transactions_merchant_lnk`
 --
 ALTER TABLE `transactions_merchant_lnk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transactions_user_app_lnk`
@@ -3142,13 +3186,13 @@ ALTER TABLE `upload_folders_parent_lnk`
 -- AUTO_INCREMENT for table `up_permissions`
 --
 ALTER TABLE `up_permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `up_permissions_role_lnk`
 --
 ALTER TABLE `up_permissions_role_lnk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `up_roles`
