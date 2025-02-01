@@ -4,7 +4,8 @@
     "info": {
         "singularName": "merchant-product",
         "pluralName": "merchant-products",
-        "displayName": "Merchant Product"
+        "displayName": "Merchant Product",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -17,11 +18,10 @@
             "target": "api::merchant.merchant",
             "inversedBy": "merchant_products"
         },
-        "product": {
+        "products": {
             "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::product.product",
-            "inversedBy": "merchant_product"
+            "relation": "oneToMany",
+            "target": "api::product.product"
         },
         "price": {
             "type": "integer",

@@ -472,6 +472,7 @@ export interface ApiMerchantProductMerchantProduct
   extends Struct.CollectionTypeSchema {
   collectionName: 'merchant_products';
   info: {
+    description: '';
     displayName: 'Merchant Product';
     pluralName: 'merchant-products';
     singularName: 'merchant-product';
@@ -493,7 +494,7 @@ export interface ApiMerchantProductMerchantProduct
       Schema.Attribute.Private;
     merchant: Schema.Attribute.Relation<'manyToOne', 'api::merchant.merchant'>;
     price: Schema.Attribute.Integer & Schema.Attribute.Required;
-    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     status_product: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -612,10 +613,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
-    merchant_product: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::merchant-product.merchant-product'
-    >;
     name_product: Schema.Attribute.String & Schema.Attribute.Required;
     picture: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;

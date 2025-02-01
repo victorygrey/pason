@@ -24,12 +24,6 @@
       "type": "blocks",
       "required": true
     },
-    "merchant_product": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::merchant-product.merchant-product",
-      "mappedBy": "product"
-    },
     "picture": {
       "type": "media",
       "multiple": false,
