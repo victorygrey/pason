@@ -56,6 +56,10 @@
     "password": {
       "type": "string",
       "required": true
+    },
+    "is_login": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

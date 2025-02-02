@@ -45,6 +45,17 @@
                 "Hasil olahan"
             ],
             "required": true
+        },
+        "list_item_transaction": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::list-item-transaction.list-item-transaction"
+        },
+        "transaction": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::transaction.transaction",
+            "mappedBy": "product"
         }
     }
 }

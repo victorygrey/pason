@@ -4,7 +4,8 @@
     "info": {
         "singularName": "transaction",
         "pluralName": "transactions",
-        "displayName": "Transaction"
+        "displayName": "Transaction",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -32,15 +33,23 @@
             "type": "integer",
             "required": true
         },
-        "delivery_service": {
-            "type": "string",
-            "required": true
+        "id_transaction": {
+            "type": "string"
         },
-        "list_item_transactions": {
+        "product": {
             "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::list-item-transaction.list-item-transaction",
-            "mappedBy": "transaction"
+            "relation": "oneToOne",
+            "target": "api::product.product",
+            "inversedBy": "transaction"
+        },
+        "date": {
+            "required": true,
+            "type": "date"
+        },
+        "status_payment": {
+            "type": "boolean",
+            "default": false,
+            "required": false
         }
     }
 }

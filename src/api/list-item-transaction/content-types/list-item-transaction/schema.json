@@ -4,19 +4,14 @@
   "info": {
     "singularName": "list-item-transaction",
     "pluralName": "list-item-transactions",
-    "displayName": "List Item Transaction"
+    "displayName": "List Item Transaction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "transaction": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::transaction.transaction",
-      "inversedBy": "list_item_transactions"
-    },
     "item_name": {
       "type": "string",
       "required": true

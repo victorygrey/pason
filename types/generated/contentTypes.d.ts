@@ -434,6 +434,7 @@ export interface ApiListItemTransactionListItemTransaction
   extends Struct.CollectionTypeSchema {
   collectionName: 'list_item_transactions';
   info: {
+    description: '';
     displayName: 'List Item Transaction';
     pluralName: 'list-item-transactions';
     singularName: 'list-item-transaction';
@@ -458,10 +459,6 @@ export interface ApiListItemTransactionListItemTransaction
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<1>;
     total: Schema.Attribute.Integer & Schema.Attribute.Required;
-    transaction: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::transaction.transaction'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -607,6 +604,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    list_item_transaction: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::list-item-transaction.list-item-transaction'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -616,6 +617,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name_product: Schema.Attribute.String & Schema.Attribute.Required;
     picture: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    transaction: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::transaction.transaction'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -626,6 +631,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
   collectionName: 'transactions';
   info: {
+    description: '';
     displayName: 'Transaction';
     pluralName: 'transactions';
     singularName: 'transaction';
@@ -637,13 +643,10 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    delivery_service: Schema.Attribute.String & Schema.Attribute.Required;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
     delivery_time: Schema.Attribute.Time & Schema.Attribute.Required;
     grand_total: Schema.Attribute.Integer & Schema.Attribute.Required;
-    list_item_transactions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::list-item-transaction.list-item-transaction'
-    >;
+    id_transaction: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -651,7 +654,10 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     merchant: Schema.Attribute.Relation<'manyToOne', 'api::merchant.merchant'>;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    status_payment: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -679,6 +685,7 @@ export interface ApiUserappUserapp extends Struct.CollectionTypeSchema {
     email: Schema.Attribute.Email & Schema.Attribute.Required;
     gender: Schema.Attribute.Enumeration<['male', 'female']> &
       Schema.Attribute.Required;
+    is_login: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
